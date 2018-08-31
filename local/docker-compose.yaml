@@ -1,0 +1,21 @@
+version: '3'
+services:
+    doom-client:
+        build: ../../doom-client
+        ports:
+        - "8080:8080"
+        environment:
+        - "DOOM_STATE_SERVICE_URL=http://doom-state:8080"
+        - "DOOM_ENGINE_SERVICE_URL=http://doom-engine:8080"
+        - "DOOM_STATE_SERVICE_PASSWORD=clientpwd"
+    doom-engine:
+        build: ../../doom-engine
+        ports:
+        - "8081:8080"
+        environment:
+        - "DOOM_STATE_SERVICE_URL=http://doom-state:8080"
+        - "DOOM_STATE_SERVICE_PASSWORD=enginepwd"
+    doom-state:
+        build: ../../doom-state
+        ports:
+        - "8082:8080"
